@@ -7,7 +7,7 @@ CREATE TABLE dogs (
     name TEXT NOT NULL,
     age INT NOT NULL,
     breed TEXT NOT NULL,
-    date_created TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     description TEXT NOT NULL,
-    fav_treat TEXT NOT NULL
+    fav_treat TEXT NOT NULL,
+    date_created TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 )
