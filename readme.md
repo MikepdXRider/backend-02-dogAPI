@@ -29,17 +29,17 @@ const Router = require('express');
 // import model
 
 module.exports = Router()
-    .get('/:id', async (req, res, next) => {
-        const { id } = req.params;
-        const dog = await model.getById(id)
+    .post('/', async (req, res, next) => {
+        const dog = await model.insert({...req.body});
+        res.send(dogs);
     })
     .get('/', async (req, res, next) => {
         const dogs = await model.getAll();
         res.send(dogs);
     })
-    .post('/', async (req, res, next) => {
-        const dog = await model.insert({...req.body});
-        res.send(dogs);
+    .get('/:id', async (req, res, next) => {
+        const { id } = req.params;
+        const dog = await model.getById(id)
     })
     .patch('/:id', async (req, res, next) => {
         const { id } = req.params;
