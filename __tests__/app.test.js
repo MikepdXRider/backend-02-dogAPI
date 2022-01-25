@@ -89,8 +89,11 @@ describe('backend-02-dogAPI routes', () => {
 
     await request(app).delete(`/api/v1/dogs/${id}`);
 
-    const actual = await Dog.getById(id);
-
-    expect(actual).toBeNull();
+    // Note: You must wrap the code in a function, otherwise the error will not be caught and the assertion will fail.
+      // https://jestjs.io/docs/expect#tothrowerror
+    // Note: Because async/await returns a promise jest will not see it's error. We must use the .rejects syntax to catch the expected behavior.
+      // https://stackoverflow.com/a/61214808
+      // https://jestjs.io/docs/asynchronous
+    expect(async () => await Dog.getById(id)).rejects.toThrowError(/dog does not exist/i);
   });
 });
